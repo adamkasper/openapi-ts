@@ -10,6 +10,7 @@ import type { Auth } from '../core/auth';
 import type {
   Client as CoreClient,
   Config as CoreConfig,
+  OmitNever,
 } from '../core/types';
 
 export interface Config<T extends ClientOptions = ClientOptions>
@@ -160,7 +161,7 @@ export type Options<
   TData extends TDataShape = TDataShape,
   ThrowOnError extends boolean = boolean,
 > = OmitKeys<RequestOptions<ThrowOnError>, 'body' | 'path' | 'query' | 'url'> &
-  Omit<TData, 'url'>;
+  OmitNever<Omit<TData, 'url'>>;
 
 export type OptionsLegacyParser<
   TData = unknown,

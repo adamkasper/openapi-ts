@@ -2,6 +2,7 @@ import type { Auth } from '../core/auth.js';
 import type {
   Client as CoreClient,
   Config as CoreConfig,
+  OmitNever,
 } from '../core/types.js';
 import type { Middleware } from './utils.js';
 
@@ -196,7 +197,7 @@ export type Options<
   RequestOptions<TResponseStyle, ThrowOnError>,
   'body' | 'path' | 'query' | 'url'
 > &
-  Omit<TData, 'url'>;
+  OmitNever<Omit<TData, 'url'>>;
 
 export type OptionsLegacyParser<
   TData = unknown,

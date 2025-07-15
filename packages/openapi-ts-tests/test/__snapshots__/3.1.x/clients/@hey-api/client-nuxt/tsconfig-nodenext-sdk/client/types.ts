@@ -13,6 +13,7 @@ import type { QuerySerializerOptions } from '../core/bodySerializer.js';
 import type {
   Client as CoreClient,
   Config as CoreConfig,
+  OmitNever,
 } from '../core/types.js';
 
 export type ArraySeparatorStyle = ArrayStyle | MatrixStyle;
@@ -165,7 +166,7 @@ export type Options<
   RequestOptions<TComposable, ResT, DefaultT>,
   'body' | 'path' | 'query' | 'url'
 > &
-  WithRefs<Omit<TData, 'url'>>;
+  WithRefs<OmitNever<Omit<TData, 'url'>>>;
 
 export type OptionsLegacyParser<TData = unknown> = TData extends { body?: any }
   ? TData extends { headers?: any }
